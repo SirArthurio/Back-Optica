@@ -54,13 +54,13 @@ public class ExamenQueratoController {
         }
     }
 
-    @PutMapping("/edit/{_id}")
-    public ResponseEntity<?> editExamen(@PathVariable String _id, @RequestBody ExamenQuerato examen) {
+    @PutMapping("/edit/{cedula}")
+    public ResponseEntity<?> editExamen(@PathVariable String cedula, @RequestBody ExamenQuerato examen) {
         try {
-            if (_id ==null){
-                return ResponseEntity.badRequest().body("El id es obligatorio");
+            if (cedula ==null){
+                return ResponseEntity.badRequest().body("La cedula es obligatorio");
             }
-            ExamenQuerato data = examenService.getExamen(_id);
+            ExamenQuerato data = examenService.getExamen(cedula);
             if (data != null) {
                 data.setOjoDerecho(examen.getOjoDerecho());
                 data.setOjoIzquierdo(examen.getOjoIzquierdo());

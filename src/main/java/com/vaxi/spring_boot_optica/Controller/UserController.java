@@ -52,10 +52,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getUser/{_id}")
-    public ResponseEntity<?> getUser(@PathVariable("_id") String _id) {
+    @GetMapping("/getUser/{cedula}")
+    public ResponseEntity<?> getUser(@PathVariable("cedula") String cedula) {
         try {
-            UserDto user = userService.getUser(_id);
+            UserDto user = userService.getUser(cedula);
             if (user != null) {
                 return ResponseEntity
                         .status(HttpStatus.OK).body(user);

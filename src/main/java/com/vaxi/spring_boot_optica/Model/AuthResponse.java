@@ -11,5 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AuthResponse {
     String token;
+    String cedula;
+    String id;
 
 }

@@ -39,9 +39,9 @@ public class UserService {
         return userRepository.findById(_id).orElse(null);
     }
 
-    public UserDto getUser(String _id) {
+    public UserDto getUser(String cedula) {
 
-        return  new UserDto(userRepository.findById(_id).orElse(null));
+        return  new UserDto(userRepository.findPacienteByCedula(cedula));
     }
 
     public void deleteUser(String _id) {
@@ -49,8 +49,8 @@ public class UserService {
     }
 
     public boolean existUserById(String _id) {
-        userRepository.existsById(_id);
-        return true;
+
+        return userRepository.existsById(_id);
     }
     public boolean existUserByUsuario(String usuario) {
         userRepository.findUserName(usuario);

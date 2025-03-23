@@ -26,8 +26,8 @@ public class ExamenQueratoService {
         return examenQueratoRepository.findAll();
     }
 
-    public ExamenQuerato getExamen(String _id) {
-        return examenQueratoRepository.findById(_id).orElse(null);
+    public ExamenQuerato getExamen(String cedula) {
+        return examenQueratoRepository.findPacienteByCedula(cedula);
     }
 
     public void deleteExamen(String _id) {

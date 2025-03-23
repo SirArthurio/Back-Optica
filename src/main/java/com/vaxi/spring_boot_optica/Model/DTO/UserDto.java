@@ -11,16 +11,19 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class UserDto {
-    @JsonProperty("username")
-    private String username;
+    @JsonProperty("cedula")
+    private String cedula;
     @JsonProperty("nombre")
     private String nombre;
-    @JsonProperty("rol")
-    private Role rol;
+    @JsonProperty("direccion")
+    private String direccion;
+    @JsonProperty("apellido")
+    private String apellido;
 
     public UserDto(User user) {
         this.nombre = user.getNombre();
-        this.rol = user.getRol();
-        this.username = user.getUsername();
+        this.direccion = user.getDireccion();
+        this.cedula = user.getCedula();
+        this.apellido = user.getApellido();
     }
 }

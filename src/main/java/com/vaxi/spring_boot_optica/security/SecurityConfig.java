@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthentication jwtAuthentication) throws Exception {
         return http.authorizeHttpRequests(
                         auth ->
-                                auth.requestMatchers("/auth/**")
+                                auth.requestMatchers("/**")
                                         .permitAll()
                                         .anyRequest()
                                         .authenticated())

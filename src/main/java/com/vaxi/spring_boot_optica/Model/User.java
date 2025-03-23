@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,9 +18,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Document(collection = "users")
 public class User implements UserDetails {
 
+  @Id
+  @JsonProperty("id")
+  private String id;
+
+
   @JsonProperty("cedula")
   @NotNull(message = "La cedula no puede estar vacio")
   private String cedula;
+
 
   @JsonProperty("nombre")
   @NotEmpty(message = "El nombre no puede estar vacio")

@@ -11,7 +11,11 @@ import java.util.Optional;
 public interface UserRepository extends MongoRepository<User, String> {
   @Query("{ 'cedula': ?0 }")
   User findPacienteByCedula(String cedula);
-
+  @Query(value = "{ 'cedula': ?0 }", exists = true)
+  boolean existsByCedula(String cedula);
   @Query("{'username': ?0}")
   Optional<User> findUserName(String usuario);
+
+  @Query("{'username':?0}")
+  Optional<User> findUserByName(String nombre);
 }

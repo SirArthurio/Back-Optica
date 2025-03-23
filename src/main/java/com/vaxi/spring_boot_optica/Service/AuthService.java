@@ -3,6 +3,7 @@ package com.vaxi.spring_boot_optica.Service;
 import com.vaxi.spring_boot_optica.Model.AuthResponse;
 import com.vaxi.spring_boot_optica.Model.DTO.LoginDto;
 import com.vaxi.spring_boot_optica.Model.DTO.RegisterDto;
+import com.vaxi.spring_boot_optica.Model.DTO.UserDto;
 import com.vaxi.spring_boot_optica.Model.User;
 import com.vaxi.spring_boot_optica.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,17 +28,28 @@ public class AuthService {
 
 
     public AuthResponse Login(LoginDto login) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())
+            );
+        } catch (Exception e) {
+            throw new RuntimeException("Error de autenticación: " + e.getMessage());
+        }
+
         UserDetails userDetails = userRepository.findUserName(login.getUsername())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        User userDto = userRepository.findUserByName(login.getUsername()).orElseThrow(()->new RuntimeException("no esta"));
         String token = jwtService.getToken(userDetails);
+
+
 
         return AuthResponse.builder()
                 .token(token)
+                .id(userDto.getId())
+                .cedula(userDto.getCedula())
                 .build();
     }
+
 
 
     public AuthResponse Register(RegisterDto register) {
