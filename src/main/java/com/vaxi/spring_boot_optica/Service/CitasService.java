@@ -80,6 +80,9 @@ public class CitasService {
 
         return horariosDisponibles;
     }
+    public List<Citas> obtenerCitasPorUsuario(User userId) {
+        return citaRepository.findByUserIdOrderByFechaAscHoraAsc(userId);
+    }
 
 }
 

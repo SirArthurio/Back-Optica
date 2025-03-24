@@ -21,7 +21,7 @@ public class Cors {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8100"));
+        configuration.setAllowedOrigins(List.of("http://192.168.1.7:8100", "capacitor://localhost","http://localhost:8100"));
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
